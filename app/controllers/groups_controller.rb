@@ -23,6 +23,7 @@ before_action :authenticate_user!, except: [:index, :show]
     @group = current_user.groups.create(group_params)
 
     if @group.save
+      current_user.join!(@group)
       redirect_to groups_path
     else
       render :new
