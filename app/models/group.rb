@@ -1,4 +1,5 @@
 class Group < ActiveRecord::Base
+  scope :recent, -> { order("updated_at DESC")}
   validates :title, presence: true
 
   has_many :posts, dependent: :destroy
